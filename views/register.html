@@ -1,0 +1,70 @@
+<main>
+  <h1>Register</h1>
+  <form action="/register" method="POST">
+    <div class="email">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+    </div>
+    <div class="password">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+      Password must contain:
+      <span class="error" id="passwordError">
+        
+        <ul>
+          <li>At least 1 lowercase letter</li>
+          <li>At least 1 uppercase letter</li>
+          <li>At least 1 number</li>
+          <li>At least 8 characters</li>
+        </ul>
+      </span>
+    </div>
+    <button type="submit">Register</button>
+  </form>
+  <style>
+    #email:valid, #password:valid {
+      border-color: green;
+    }
+
+    #email:invalid, #password:invalid {
+      border-color: red;
+    }
+  </style>
+  <script>
+    const password = document.getElementById('password');
+    const passwordError = document.getElementById('passwordError');
+    const errorListItems = passwordError.querySelectorAll('li');
+  
+    password.addEventListener('input', function() {
+      const passwordValue = password.value;
+  
+      // Check for lowercase letter
+      if (/(?=.*[a-z])/.test(passwordValue)) {
+        errorListItems[0].style.color = 'green';
+      } else {
+        errorListItems[0].style.color = 'red';
+      }
+  
+      // Check for uppercase letter
+      if (/(?=.*[A-Z])/.test(passwordValue)) {
+        errorListItems[1].style.color = 'green';
+      } else {
+        errorListItems[1].style.color = 'red';
+      }
+  
+      // Check for number
+      if (/(?=.*\d)/.test(passwordValue)) {
+        errorListItems[2].style.color = 'green';
+      } else {
+        errorListItems[2].style.color = 'red';
+      }
+  
+      // Check for minimum length
+      if (/.{8,}/.test(passwordValue)) {
+        errorListItems[3].style.color = 'green';
+      } else {
+        errorListItems[3].style.color = 'red';
+      }
+    });
+  </script>
+</main>
