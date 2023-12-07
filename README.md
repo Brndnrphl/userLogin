@@ -1,4 +1,4 @@
-# Project README
+# Simple User Login
 
 This project is a user login system built using Express.js, SQLite3, and bcrypt for password hashing. It includes the following key components:
 
